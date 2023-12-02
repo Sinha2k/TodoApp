@@ -1,20 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import React from "react";
+import * as eva from "@eva-design/eva";
+import { EvaIconsPack } from "@ui-kitten/eva-icons";
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import Home from "./app/screens/Home/Home";
+import Account from "./app/screens/Account/Account";
+import Login from "./app/screens/Login";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Login">
+              <Stack.Screen
+                options={{ headerShown: false }}
+                component={Login}
+                name="Login"
+              />
+              <Stack.Screen
+                options={{ headerShown: false }}
+                component={Home}
+                name="Home"
+              />
+              <Stack.Screen
+                options={{ headerShown: true }}
+                component={Account}
+                name="Account"
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </GestureHandlerRootView>
+      </ApplicationProvider>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
