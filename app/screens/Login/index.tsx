@@ -1,4 +1,4 @@
-import { Button, Icon, Input, Layout, Text } from "@ui-kitten/components";
+import { Button, Icon, Input, Text } from "@ui-kitten/components";
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,7 +7,6 @@ import {
   Platform,
 } from "react-native";
 import { useState } from "react";
-import { Account } from "../../../types/types";
 import { TouchableWithoutFeedback } from "@ui-kitten/components/devsupport";
 import { NavigationProp } from "@react-navigation/native";
 
@@ -15,12 +14,15 @@ interface RouterProps {
   navigation: NavigationProp<any, any>;
 }
 
+interface dataLogin {
+  email: string;
+  password: string;
+}
+
 const Login = ({ navigation }: RouterProps) => {
-  const [account, setAccount] = useState<Account>({
+  const [account, setAccount] = useState<dataLogin>({
     email: "",
     password: "",
-    avatar: "",
-    username: "",
   });
 
   const [secureTextEntry, setSecureTextEntry] = useState(true);
@@ -38,6 +40,14 @@ const Login = ({ navigation }: RouterProps) => {
       />
     </TouchableWithoutFeedback>
   );
+
+  const handleSubmit = (data: dataLogin) => {
+    if (data.email && data.password) {
+      navigation.navigate("Home");
+    } else {
+      alert("You must enter your email or password");
+    }
+  };
 
   return (
     <SafeAreaView
@@ -74,7 +84,7 @@ const Login = ({ navigation }: RouterProps) => {
           />
           <Button
             style={{ marginTop: 30 }}
-            onPress={() => navigation.navigate("Home")}
+            onPress={() => handleSubmit(account)}
           >
             Submit
           </Button>
