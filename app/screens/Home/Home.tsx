@@ -41,13 +41,13 @@ const Home = ({ navigation }: RouterProps) => {
   const scrollRef = useRef(null);
   const today = new Date();
   const day = [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
   ];
 
   const searchIcon = (): IconElement => (
@@ -96,7 +96,7 @@ const Home = ({ navigation }: RouterProps) => {
             <Layout style={styles.today}>
               <Text style={{}}>Today 's </Text>
               <Text style={{ color: theme["color-primary-500"] }}>
-                {day[today.getDay() - 1]}
+                {day[today.getDay()]}
               </Text>
             </Layout>
             <Text style={{ fontSize: 10, color: "gray", marginTop: 5 }}>
