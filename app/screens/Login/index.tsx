@@ -43,6 +43,7 @@ const Login = ({ navigation }: RouterProps) => {
 
   const handleSubmit = (data: dataLogin) => {
     if (data.email && data.password) {
+      alert("Login success !!!")
       navigation.navigate("Home");
     } else {
       alert("You must enter your email or password");

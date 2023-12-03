@@ -96,6 +96,7 @@ const TaskCard = ({
       }
     }
     setTasks(newArray);
+    alert("Update task success!!!")
   };
 
   const handleInProgressTask = (id: number) => {
@@ -108,10 +109,12 @@ const TaskCard = ({
       }
     }
     setTasks(newArray);
+    alert("Update task success!!!")
   };
 
   const handleCompleteTask = (id: number) => {
     setTasks(tasks.filter((item) => item.id !== id));
+    alert("Update task success!!!")
   };
 
   return (

@@ -104,6 +104,7 @@ const CreateTask = ({ tasks, setTasks, closeSheet }: propsCreateTask) => {
       };
       setTasks([...tasks, newTask]);
       closeSheet();
+      alert("Create task success !!!")
     } else {
       alert("You must enter title or description task");
     }
